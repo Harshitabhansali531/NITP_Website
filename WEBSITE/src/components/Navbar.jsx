@@ -1,237 +1,280 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ChevronRight, Menu, X } from 'lucide-react';
-import { navigationData } from '../data/navigation';
+import { Link } from 'react-router-dom';
+import { 
+  Home, Info, FileText, BookOpen, ScrollText, Briefcase, 
+  UserCheck, Users, Landmark, Building, Award, ClipboardList, 
+  GraduationCap, CheckSquare, Shield, Search, Building2, 
+  LineChart, Layers, LayoutGrid, Globe, Book, Star, 
+  Bed, Wallet, HeartHandshake, ShieldAlert, Monitor, Banknote, Calendar, Receipt, Tent, Rocket, ChevronRight
+} from 'lucide-react';
 
-/**
- * Navbar Component
- * 
- * Handles site-wide navigation with support for multi-level dropdowns.
- * Includes responsive mobile navigation and sticky behaviors.
- */
+const navItems = [
+  {
+    label: 'Home',
+    href: '/',
+  },
+  {
+    label: 'Institute',
+    href: '#',
+    children: [
+      { label: 'About', href: '#', icon: Info, hasSubMenu: true },
+      { label: 'NIT Status & Acts', href: '#', icon: Landmark },
+      { label: 'Reports', href: '#', icon: BookOpen, hasSubMenu: true },
+      { label: 'Magazine', href: '#', icon: ScrollText },
+      { label: 'PAN/GST', href: '#', icon: Receipt },
+    ],
+  },
+  {
+    label: 'Administration',
+    href: '#',
+    children: [
+      { label: 'Visitor', href: '#', icon: UserCheck },
+      { label: 'NITs Council', href: '#', icon: Users },
+      { label: 'Board of Governors', href: '#', icon: Landmark },
+      { label: 'Senate', href: '#', icon: Building },
+      { label: 'Director', href: '#', icon: Award },
+      { label: 'Registrar', href: '#', icon: ClipboardList },
+      { label: 'Deans', href: '#', icon: GraduationCap },
+      { label: 'HoD', href: '#', icon: CheckSquare },
+      { label: 'Chief Proctor', href: '#', icon: Shield },
+      { label: 'Proctorial Board', href: '#', icon: Users },
+      { label: 'Chief Vigilance Officer', href: '#', icon: Search },
+      { label: 'Service Unit Heads', href: '#', icon: Building2 },
+      { label: 'Finance Committee', href: '#', icon: LineChart },
+      { label: 'Building Work Committee', href: '#', icon: Layers },
+      { label: 'Committees', href: '#', icon: Users, hasSubMenu: true },
+      { label: 'Minutes of Meeting', href: '#', icon: FileText },
+      { label: 'Organization Chart', href: '#', icon: LayoutGrid },
+    ],
+  },
+  {
+    label: 'Academics',
+    href: '#',
+    children: [
+      { 
+        label: 'Departments', 
+        href: '#', 
+        icon: Building2, 
+        hasSubMenu: true,
+        children: [
+          { label: 'Applied Physics and Materials Engineering', href: '#' },
+          { label: 'Architecture & Planning', href: '#' },
+          { label: 'Chemical Science and Technology', href: '#' },
+          { label: 'Civil Engineering', href: '#' },
+          { label: 'Computer Science and Engineering', href: '/department/cse' },
+          { label: 'Electrical Engineering', href: '#' },
+          { label: 'Electronics and Communication Engineering', href: '#' },
+          { label: 'Humanities & Social Sciences', href: '#' },
+          { label: 'Mathematics and Computing Technology', href: '#' },
+          { label: 'Mechanical Engineering', href: '#' },
+          { label: 'Mechatronics and Automation Engineering', href: '#' },
+        ]
+      },
+      { label: 'Intranet Portal', href: '#', icon: Globe },
+      { label: 'Programmes', href: '#', icon: Book },
+      { label: 'Academic Calendar', href: '#', icon: Calendar },
+      { label: 'Rules and Regulation', href: '#', icon: Shield },
+      { label: 'Fee Structure', href: '#', icon: Banknote },
+      { label: 'Admission', href: '#', icon: UserCheck },
+      { label: 'Format of Official Documents', href: '#', icon: FileText },
+      { label: 'Academic Notices', href: '#', icon: ClipboardList },
+      { label: 'Centre of Excellence', href: '#', icon: Star, hasSubMenu: true },
+      { label: 'Patents', href: '#', icon: Award },
+      { label: 'Publications', href: '#', icon: BookOpen },
+      { label: 'Projects', href: '#', icon: Briefcase },
+      { label: 'BIS Dashboard', href: '#', icon: LayoutGrid },
+      { label: 'Scholarship', href: '#', icon: GraduationCap },
+    ],
+  },
+  {
+    label: 'Faculty & Staff',
+    href: '/faculty-directory',
+    children: [
+      { label: 'Faculty Directory', href: '/faculty-directory', icon: Users },
+      { label: 'Officers Directory', href: '#', icon: Shield },
+      { label: 'Staff Directory', href: '#', icon: UserCheck },
+      { label: 'Admin Portal', href: '#', icon: Monitor },
+      { label: 'Faculty Academic Portal', href: '#', icon: LayoutGrid },
+      { label: 'Staff Claim Form', href: '#', icon: FileText },
+      { label: 'Holidays/Restricted Holidays', href: '#', icon: Calendar },
+    ],
+  },
+  {
+    label: 'Students',
+    href: '#',
+    children: [
+      { label: 'Hostel & Mess', href: '#', icon: Bed },
+      { label: 'Scholarship', href: '#', icon: GraduationCap },
+      { label: 'Clubs/Societies', href: '#', icon: Users },
+      { label: 'Anti Ragging', href: '#', icon: ShieldAlert },
+      { label: 'Fee Payment', href: '#', icon: Wallet },
+      { label: 'Women Cell', href: '#', icon: HeartHandshake },
+      { label: 'SC/ST Cell', href: '#', icon: Users },
+      { label: 'Student Activity Center', href: '#', icon: Tent },
+      { label: 'Tech Fest', href: '#', icon: Rocket },
+      { label: 'NSS@NITP', href: '#', icon: HeartHandshake },
+      { label: 'E-Cell', href: '#', icon: LineChart },
+      { label: 'Unnat Bharat', href: '#', icon: Globe },
+      { label: 'Academic Portal (New)', href: '#', icon: Monitor },
+      { label: 'Academic Portal(Old)', href: '#', icon: LayoutGrid },
+    ],
+  },
+  {
+    label: 'Facilities',
+    href: '#',
+    children: [
+      { label: 'Library', href: '#', icon: Book },
+      { label: 'Computer Center', href: '#', icon: Monitor },
+      { label: 'Sports', href: '#', icon: Award },
+      { label: 'Medical', href: '#', icon: HeartHandshake },
+      { label: 'Transport', href: '#', icon: Building },
+    ],
+  },
+];
+
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
-  const [activeSubDropdown, setActiveSubDropdown] = useState(null);
-  const [isPageScrolled, setIsPageScrolled] = useState(false);
-  const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openSubDropdown, setOpenSubDropdown] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Track scroll position for dynamic styling (solid vs transparent/translucent)
   useEffect(() => {
-    const handleScroll = () => setIsPageScrolled(window.scrollY > 40);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu whenever a route changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setActiveDropdown(null);
-  }, [location]);
-
   return (
-    <nav 
-      className={`
-        sticky top-0 z-50 transition-all duration-300 
-        bg-[#811919] text-white 
-        ${isPageScrolled ? 'shadow-xl' : 'border-b border-white/10'}
-      `}
-    >
-      <div className="max-w-[1750px] mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          
-          {/* Desktop Navigation (Center/Spanned) */}
-          <ul className="hidden lg:flex items-center justify-center w-full gap-2">
-            {navigationData.map((item, index) => (
-              <NavItem 
-                key={item.label} 
-                item={item} 
-              />
+    <nav className={`sticky top-0 z-50 transition-all duration-300 bg-[#811919] text-white ${isScrolled ? 'shadow-xl' : 'border-b border-white/10'}`}>
+      <div className="max-w-[1750px] mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Desktop Nav */}
+          <ul className="hidden lg:flex items-center justify-evenly w-full">
+            {navItems.map((item, idx) => (
+              <li key={idx} className="dropdown relative group">
+                <Link
+                  to={item.href}
+                  className={`flex items-center gap-1 px-4 py-3 mx-1 rounded-lg text-base xl:text-lg font-bold transition-all duration-300 whitespace-nowrap hover:bg-white/15 hover:backdrop-blur-md`}
+                >
+                  {item.label === 'Home' ? <Home className="w-[20px] h-[20px] mb-0.5" /> : item.label}
+                  {item.children && (
+                    <svg className="w-3.5 h-3.5 ml-1 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  )}
+                </Link>
+                {item.children && (
+                  <div className="dropdown-menu absolute left-0 top-full bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-w-[320px] border border-[#811919] z-50 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    {item.children.map((child, cidx) => {
+                      const Icon = child.icon;
+                      return (
+                        <div key={cidx} className="relative group/sub">
+                          <Link
+                            to={child.href}
+                            className="flex items-center gap-3 px-4 py-3 text-[16px] text-[#811919] font-medium hover:bg-[#811919]/10 rounded-lg transition-colors group/item"
+                          >
+                            {Icon && <Icon className="w-[20px] h-[20px] shrink-0" />}
+                            <span className="flex-1">{child.label}</span>
+                            {child.hasSubMenu && (
+                              <ChevronRight className="w-4 h-4 opacity-70 shrink-0" />
+                            )}
+                          </Link>
+                          {/* Nested Level 2 (Departments) */}
+                          {child.children && (
+                            <div className="absolute left-full top-0 ml-1 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-w-[350px] border border-[#811919] p-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
+                              {child.children.map((subChild, scidx) => (
+                                <Link
+                                  key={scidx}
+                                  to={subChild.href}
+                                  className="flex items-center gap-3 px-4 py-2 text-[14px] text-[#811919] font-medium hover:bg-[#811919]/10 rounded-lg transition-colors"
+                                >
+                                  {subChild.label}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </li>
             ))}
           </ul>
 
-          {/* Mobile Menu Trigger */}
-          <div className="lg:hidden flex items-center justify-between w-full">
-            <Link to="/" className="text-xl font-black uppercase tracking-widest">NITP</Link>
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl hover:bg-white/10 transition-colors"
-              aria-label="Toggle navigation menu"
-            >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className={`lg:hidden p-2 rounded transition-colors ${isScrolled ? 'hover:bg-gray-100 text-navy-900' : 'hover:bg-white/20 text-white'}`}
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              {mobileOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+          <span className="lg:hidden text-sm font-semibold ml-2">Menu</span>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      <MobileMenu 
-        isOpen={isMobileMenuOpen} 
-        activeId={activeDropdown}
-        setActiveId={setActiveDropdown}
-        subActiveId={activeSubDropdown}
-        setSubActiveId={setActiveSubDropdown}
-      />
-    </nav>
-  );
-};
-
-/**
- * NavItem: Individual link with Dropdown support
- */
-const NavItem = ({ item }) => {
-  const Icon = item.icon;
-
-  return (
-    <li className="relative group flex items-center h-20">
-      <Link
-        to={item.href}
-        className="
-          flex items-center gap-2 px-4 py-2.5 rounded-xl border border-transparent
-          text-base xl:text-[1.1rem] font-bold uppercase tracking-wide
-          transition-all duration-300 hover:bg-white/10 hover:border-white/5
-        "
-      >
-        {item.label === 'Home' ? <Icon className="w-5 h-5" /> : item.label}
-        {item.children && (
-          <ChevronRight 
-            className="w-4 h-4 rotate-90 opacity-70 transition-transform group-hover:rotate-[270deg]" 
-          />
-        )}
-      </Link>
-
-      {/* Flyout Dropdown */}
-      {item.children && (
-        <div 
-          className="
-            absolute top-full left-0 pt-2 
-            opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-            transition-all duration-200 transform group-hover:translate-y-0 translate-y-2
-          "
-        >
-          <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 min-w-[320px] p-3 text-slate-800">
-            {item.children.map((child) => (
-              <SubNavItem key={child.label} child={child} />
-            ))}
-          </div>
-        </div>
-      )}
-    </li>
-  );
-};
-
-/**
- * SubNavItem: Dropdown item with potential Level-3 nesting
- */
-const SubNavItem = ({ child }) => {
-  const ChildIcon = child.icon;
-
-  return (
-    <div className="relative group/sub mb-1 last:mb-0">
-      <Link
-        to={child.href}
-        className="
-          flex items-center gap-3.5 px-4 py-3 
-          text-[15px] font-bold text-slate-700 
-          hover:bg-[#811919]/5 hover:text-[#811919] 
-          rounded-xl transition-all
-        "
-      >
-        {ChildIcon && <ChildIcon className="w-5 h-5 opacity-60 group-hover/sub:opacity-100" />}
-        <span className="flex-1">{child.label}</span>
-        {child.children && <ChevronRight className="w-4 h-4 opacity-50" />}
-      </Link>
-
-      {/* Level 3 Sub-Dropdown (Fly-out to the right) */}
-      {child.children && (
-        <div 
-          className="
-            absolute left-full top-0 ml-2 pt-0
-            opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible
-            transition-all duration-200 transform group-hover/sub:translate-x-0 -translate-x-2
-          "
-        >
-          <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 min-w-[350px] p-3 text-slate-800">
-            {child.children.map((sub) => (
-              <Link
-                key={sub.label}
-                to={sub.href}
-                className="block px-4 py-2.5 text-[14px] font-bold text-slate-600 hover:text-[#811919] hover:bg-[#811919]/5 rounded-lg"
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="lg:hidden bg-[#811919] border-t border-white/10 overflow-y-auto max-h-[calc(100vh-64px)]">
+          {navItems.map((item, idx) => (
+            <div key={idx}>
+              <button
+                onClick={() => setOpenDropdown(openDropdown === idx ? null : idx)}
+                className="w-full flex items-center justify-between px-6 py-4 text-base font-bold bg-[#811919] border-b border-white/5"
               >
-                {sub.label}
-              </Link>
-            ))}
-          </div>
+                {item.label}
+                {item.children && (
+                  <svg className={`w-4 h-4 transition-transform ${openDropdown === idx ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                )}
+              </button>
+              {item.children && openDropdown === idx && (
+                <div className="bg-white/5">
+                  {item.children.map((child, cidx) => (
+                    <div key={cidx}>
+                      <button
+                        onClick={() => child.children ? setOpenSubDropdown(openSubDropdown === cidx ? null : cidx) : null}
+                        className="w-full flex items-center gap-3 px-10 py-3 text-[15px] font-medium text-gray-200 hover:text-white hover:bg-white/10"
+                      >
+                        {child.icon && <child.icon className="w-[18px] h-[18px]" />}
+                        <Link to={child.children ? '#' : child.href} className="flex-1 text-left" onClick={() => !child.children && setMobileOpen(false)}>{child.label}</Link>
+                        {child.hasSubMenu && (
+                          <ChevronRight className={`w-4 h-4 transition-transform ${openSubDropdown === cidx ? 'rotate-90' : ''}`} />
+                        )}
+                      </button>
+                      {child.children && openSubDropdown === cidx && (
+                        <div className="bg-black/20">
+                          {child.children.map((sub, scidx) => (
+                            <Link
+                              key={scidx}
+                              to={sub.href}
+                              className="block px-16 py-2 text-[14px] text-gray-400 hover:text-white hover:bg-white/5"
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       )}
-    </div>
-  );
-};
-
-/**
- * MobileMenu: Hierarchical accordion menu for touch devices
- */
-const MobileMenu = ({ isOpen, activeId, setActiveId, subActiveId, setSubActiveId }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div className="lg:hidden bg-white text-[#1a1c1e] max-h-[calc(100vh-80px)] overflow-y-auto font-bold border-t border-slate-100">
-      {navigationData.map((item, idx) => (
-        <div key={item.label} className="border-b border-slate-50 last:border-0">
-          <button
-            onClick={() => setActiveId(activeId === idx ? null : idx)}
-            className={`
-              w-full flex items-center justify-between px-8 py-5 
-              text-lg uppercase tracking-wider
-              ${activeId === idx ? 'text-[#811919] bg-[#811919]/5' : 'text-slate-800'}
-            `}
-          >
-            {item.label}
-            {item.children && (
-              <ChevronRight className={`w-5 h-5 transition-transform ${activeId === idx ? 'rotate-90 text-[#811919]' : ''}`} />
-            )}
-          </button>
-          
-          {item.children && activeId === idx && (
-            <div className="bg-slate-50/50 pb-4">
-              {item.children.map((child, cidx) => (
-                <div key={child.label}>
-                  <button
-                    onClick={() => child.children ? setSubActiveId(subActiveId === cidx ? null : cidx) : null}
-                    className="w-full flex items-center gap-4 px-12 py-3.5 hover:text-[#811919]"
-                  >
-                    {child.icon && <child.icon className="w-5 h-5 opacity-40" />}
-                    <Link 
-                      to={child.children ? '#' : child.href} 
-                      className="flex-1 text-left text-[15px]"
-                    >
-                      {child.label}
-                    </Link>
-                    {child.children && (
-                      <ChevronRight className={`w-4 h-4 transition-transform ${subActiveId === cidx ? 'rotate-90' : ''}`} />
-                    )}
-                  </button>
-                  
-                  {child.children && subActiveId === cidx && (
-                    <div className="bg-slate-100/50 py-2 border-l-4 border-[#811919] mx-12 rounded-r-xl">
-                      {child.children.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          to={sub.href}
-                          className="block px-6 py-2.5 text-[14px] text-slate-500 hover:text-[#811919]"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+    </nav>
   );
 };
 
