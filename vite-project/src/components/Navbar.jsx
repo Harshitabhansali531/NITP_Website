@@ -57,12 +57,17 @@ const navItems = [
         icon: Building2, 
         hasSubMenu: true,
         children: [
-          { label: 'Computer Science & Engineering', href: '/department/cse' },
-          { label: 'Electronics & Communication', href: '/department/ece' },
-          { label: 'Electrical Engineering', href: '/department/ee' },
-          { label: 'Civil Engineering', href: '/department/civil' },
-          { label: 'Mechanical Engineering', href: '/department/mechanical' },
-          { label: 'Chemical Engineering', href: '/department/chemical' },
+          { label: 'Applied Physics and Materials Engineering', href: '#' },
+          { label: 'Architecture & Planning', href: '#' },
+          { label: 'Chemical Science and Technology', href: '#' },
+          { label: 'Civil Engineering', href: '#' },
+          { label: 'Computer Science and Engineering', href: '/department/cse' },
+          { label: 'Electrical Engineering', href: '#' },
+          { label: 'Electronics and Communication Engineering', href: '#' },
+          { label: 'Humanities & Social Sciences', href: '#' },
+          { label: 'Mathematics and Computing Technology', href: '#' },
+          { label: 'Mechanical Engineering', href: '#' },
+          { label: 'Mechatronics and Automation Engineering', href: '#' },
         ]
       },
       { label: 'Intranet Portal', href: '#', icon: Globe },
@@ -178,7 +183,7 @@ const Navbar = () => {
                           </Link>
                           {/* Nested Level 2 (Departments) */}
                           {child.children && (
-                            <div className="absolute left-full top-0 ml-1 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-w-[280px] border border-[#811919] p-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
+                            <div className="absolute left-full top-0 ml-1 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-w-[350px] border border-[#811919] p-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
                               {child.children.map((subChild, scidx) => (
                                 <Link
                                   key={scidx}
