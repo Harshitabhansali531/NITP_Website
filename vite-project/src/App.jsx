@@ -4,9 +4,8 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import FeaturesCarousel from './components/FeaturesCarousel';
-import RecentPublications from './components/RecentPublications';
-import ResearchHighlights from './components/ResearchHighlights';
-import Projects from './components/Projects';
+import NoticeEvents from './components/NoticeEvents';
+import ResearchModule from './components/ResearchModule';
 import CampusImage from './components/CampusImage';
 import Footer from './components/Footer';
 
@@ -41,9 +40,8 @@ function App() {
         <HeroSection />
         <AboutSection />
         <FeaturesCarousel />
-        <RecentPublications />
-        <ResearchHighlights />
-        <Projects />
+        <NoticeEvents />
+        <ResearchModule />
         <CampusImage />
       </main>
       <Footer />
