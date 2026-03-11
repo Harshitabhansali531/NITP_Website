@@ -3,12 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const HeroSection = () => {
   const images = [
-    "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2086&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1541339907198-e08759dfc3f0?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1525921429624-479b6a29d84c?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=2070&auto=format&fit=crop"
+    "/images/DJI_20250925092321_0053_D (1).png",
+    "/images/DJI_20250925145712_0143_D.png",
+    "/images/DJI_20250925145758_0148_D.png",
+    "/images/DJI_20250925150150_0153_D.png",
+    "/images/DJI_20250925161831_0200_D.png",
+    "/images/TYNE9859(1).png",
+    "/images/VIS07257.png"
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
