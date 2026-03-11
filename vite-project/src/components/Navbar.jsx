@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Home, Info, FileText, BookOpen, ScrollText, Briefcase, 
   UserCheck, Users, Landmark, Building, Award, ClipboardList, 
   GraduationCap, CheckSquare, Shield, Search, Building2, 
   LineChart, Layers, LayoutGrid, Globe, Book, Star, 
-  Bed, Wallet, HeartHandshake, ShieldAlert, Monitor, Banknote, Calendar, Receipt, Tent, Rocket
+  Bed, Wallet, HeartHandshake, ShieldAlert, Monitor, Banknote, Calendar, Receipt, Tent, Rocket, ChevronRight
 } from 'lucide-react';
 
 const navItems = [
   {
     label: 'Home',
-    href: '#',
+    href: '/',
   },
   {
     label: 'Institute',
@@ -50,7 +51,20 @@ const navItems = [
     label: 'Academics',
     href: '#',
     children: [
-      { label: 'Departments', href: '#', icon: Building2, hasSubMenu: true },
+      { 
+        label: 'Departments', 
+        href: '#', 
+        icon: Building2, 
+        hasSubMenu: true,
+        children: [
+          { label: 'Computer Science & Engineering', href: '/department/cse' },
+          { label: 'Electronics & Communication', href: '/department/ece' },
+          { label: 'Electrical Engineering', href: '/department/ee' },
+          { label: 'Civil Engineering', href: '/department/civil' },
+          { label: 'Mechanical Engineering', href: '/department/mechanical' },
+          { label: 'Chemical Engineering', href: '/department/chemical' },
+        ]
+      },
       { label: 'Intranet Portal', href: '#', icon: Globe },
       { label: 'Programmes', href: '#', icon: Book },
       { label: 'Academic Calendar', href: '#', icon: Calendar },
@@ -116,6 +130,7 @@ const navItems = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [openSubDropdown, setOpenSubDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -134,8 +149,8 @@ const Navbar = () => {
           <ul className="hidden lg:flex items-center justify-evenly w-full">
             {navItems.map((item, idx) => (
               <li key={idx} className="dropdown relative group">
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className={`flex items-center gap-1 px-4 py-3 mx-1 rounded-lg text-base xl:text-lg font-bold transition-all duration-300 whitespace-nowrap hover:bg-white/15 hover:backdrop-blur-md`}
                 >
                   {item.label === 'Home' ? <Home className="w-[20px] h-[20px] mb-0.5" /> : item.label}
@@ -144,25 +159,38 @@ const Navbar = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
-                </a>
+                </Link>
                 {item.children && (
                   <div className="dropdown-menu absolute left-0 top-full bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-w-[320px] border border-[#811919] z-50 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                     {item.children.map((child, cidx) => {
                       const Icon = child.icon;
                       return (
-                        <a
-                          key={cidx}
-                          href={child.href}
-                          className="flex items-center gap-3 px-4 py-3 text-[16px] text-[#811919] font-medium hover:bg-[#811919]/10 rounded-lg transition-colors group/item"
-                        >
-                          {Icon && <Icon className="w-[20px] h-[20px] shrink-0" />}
-                          <span className="flex-1">{child.label}</span>
-                          {child.hasSubMenu && (
-                            <svg className="w-4 h-4 opacity-70 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
+                        <div key={cidx} className="relative group/sub">
+                          <Link
+                            to={child.href}
+                            className="flex items-center gap-3 px-4 py-3 text-[16px] text-[#811919] font-medium hover:bg-[#811919]/10 rounded-lg transition-colors group/item"
+                          >
+                            {Icon && <Icon className="w-[20px] h-[20px] shrink-0" />}
+                            <span className="flex-1">{child.label}</span>
+                            {child.hasSubMenu && (
+                              <ChevronRight className="w-4 h-4 opacity-70 shrink-0" />
+                            )}
+                          </Link>
+                          {/* Nested Level 2 (Departments) */}
+                          {child.children && (
+                            <div className="absolute left-full top-0 ml-1 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-w-[280px] border border-[#811919] p-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
+                              {child.children.map((subChild, scidx) => (
+                                <Link
+                                  key={scidx}
+                                  to={subChild.href}
+                                  className="flex items-center gap-3 px-4 py-2 text-[14px] text-[#811919] font-medium hover:bg-[#811919]/10 rounded-lg transition-colors"
+                                >
+                                  {subChild.label}
+                                </Link>
+                              ))}
+                            </div>
                           )}
-                        </a>
+                        </div>
                       );
                     })}
                   </div>
@@ -185,18 +213,18 @@ const Navbar = () => {
               )}
             </svg>
           </button>
-          <span className="lg:hidden text-sm font-semibold">Menu</span>
+          <span className="lg:hidden text-sm font-semibold ml-2">Menu</span>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-navy-900 border-t border-navy-800 animate-slide-down">
+        <div className="lg:hidden bg-[#811919] border-t border-white/10 overflow-y-auto max-h-[calc(100vh-64px)]">
           {navItems.map((item, idx) => (
             <div key={idx}>
               <button
                 onClick={() => setOpenDropdown(openDropdown === idx ? null : idx)}
-                className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium hover:bg-navy-800 border-b border-navy-800"
+                className="w-full flex items-center justify-between px-6 py-4 text-base font-bold bg-[#811919] border-b border-white/5"
               >
                 {item.label}
                 {item.children && (
@@ -206,26 +234,35 @@ const Navbar = () => {
                 )}
               </button>
               {item.children && openDropdown === idx && (
-                <div className="bg-navy-950 animate-slide-down">
-                  {item.children.map((child, cidx) => {
-                    const Icon = child.icon;
-                    return (
-                      <a
-                        key={cidx}
-                        href={child.href}
-                        className="flex items-center gap-3 px-8 py-3 text-[15px] text-gray-300 hover:text-white hover:bg-navy-900 transition-colors"
-                        onClick={() => setMobileOpen(false)}
+                <div className="bg-white/5">
+                  {item.children.map((child, cidx) => (
+                    <div key={cidx}>
+                      <button
+                        onClick={() => child.children ? setOpenSubDropdown(openSubDropdown === cidx ? null : cidx) : null}
+                        className="w-full flex items-center gap-3 px-10 py-3 text-[15px] font-medium text-gray-200 hover:text-white hover:bg-white/10"
                       >
-                        {Icon && <Icon className="w-[18px] h-[18px]" />}
-                        {child.label}
+                        {child.icon && <child.icon className="w-[18px] h-[18px]" />}
+                        <Link to={child.children ? '#' : child.href} className="flex-1 text-left" onClick={() => !child.children && setMobileOpen(false)}>{child.label}</Link>
                         {child.hasSubMenu && (
-                          <svg className="w-4 h-4 opacity-50 shrink-0 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                          </svg>
+                          <ChevronRight className={`w-4 h-4 transition-transform ${openSubDropdown === cidx ? 'rotate-90' : ''}`} />
                         )}
-                      </a>
-                    );
-                  })}
+                      </button>
+                      {child.children && openSubDropdown === cidx && (
+                        <div className="bg-black/20">
+                          {child.children.map((sub, scidx) => (
+                            <Link
+                              key={scidx}
+                              to={sub.href}
+                              className="block px-16 py-2 text-[14px] text-gray-400 hover:text-white hover:bg-white/5"
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

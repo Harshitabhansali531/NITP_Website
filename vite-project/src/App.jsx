@@ -1,51 +1,27 @@
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
-import FeaturesCarousel from './components/FeaturesCarousel';
-import NoticeEvents from './components/NoticeEvents';
-import ResearchModule from './components/ResearchModule';
-import FacultyProfile from './components/FacultyProfile';
-import CampusImage from './components/CampusImage';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import CSEDepartment from './pages/CSEDepartment';
 
 function App() {
+  const { pathname } = useLocation();
+
+  // Scroll to top on route change
   useEffect(() => {
-    // Intersection Observer for scroll reveal animations
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
-      }
-    );
-
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <Navbar />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <FeaturesCarousel />
-        <NoticeEvents />
-        <ResearchModule />
-        <FacultyProfile />
-        <CampusImage />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/department/cse" element={<CSEDepartment />} />
+      </Routes>
       <Footer />
     </div>
   );
