@@ -11,18 +11,16 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-white border-b border-burnt-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <header className="bg-white shadow-md z-[60] relative">
+      <div className="max-w-[1750px] mx-auto px-4 py-4 md:py-6 flex items-center justify-between">
         {/* Left: Logo + Name */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           <img
-            src="/images/logo.png"
+            src="public\images\NITP_logo1 (1).png"
             alt="NIT Patna Logo"
-            className="w-16 h-16 object-contain"
-            width={64}
-            height={64}
+            className="w-24 h-24 md:w-32 md:h-32 object-contain"
           />
-          <div className="relative overflow-hidden h-14 flex items-center">
+          <div className="relative overflow-hidden h-20 md:h-24 flex flex-col justify-center">
             <div
               className={`transition-all duration-700 ease-in-out ${
                 showHindi
@@ -31,12 +29,10 @@ const Header = () => {
               }`}
               style={{ position: showHindi ? 'absolute' : 'relative' }}
             >
-              <h1 className="text-xl md:text-2xl font-bold text-navy-900 font-[var(--font-heading)] leading-tight">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#811919] font-[var(--font-heading)] leading-tight tracking-wide">
                 National Institute of Technology
               </h1>
-              <p className="text-sm md:text-base text-burnt-700 font-semibold tracking-wide">
-                Patna
-              </p>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#811919] font-[var(--font-heading)] leading-tight tracking-wide">Patna</h1>
             </div>
             <div
               className={`transition-all duration-700 ease-in-out ${
@@ -46,25 +42,23 @@ const Header = () => {
               }`}
               style={{ position: !showHindi ? 'absolute' : 'relative' }}
             >
-              <h1 className="text-xl md:text-2xl font-bold text-navy-900 leading-tight" style={{ fontFamily: 'var(--font-hindi)' }}>
-                राष्ट्रीय प्रौद्योगिकी संस्थान
-              </h1>
-              <p className="text-sm md:text-base text-burnt-700 font-semibold tracking-wide" style={{ fontFamily: 'var(--font-hindi)' }}>
-                पटना
-              </p>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#811919] leading-tight tracking-wide" style={{ fontFamily: 'var(--font-hindi)' }}>
+                राष्ट्रीय प्रौद्योगिकी संस्थान </h1>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#811919] leading-tight tracking-wide" style={{ fontFamily: 'var(--font-hindi)' }}>
+              पटना</h1>
             </div>
           </div>
         </div>
 
         {/* Right: Address */}
-        <div className="hidden md:flex items-center gap-3 text-right">
-          <div className="text-sm text-gray-600 leading-snug">
-            <p className="font-semibold text-navy-800">Ashok Rajpath, Patna</p>
-            <p>Bihar — 800005, India</p>
-            <p className="text-burnt-600 font-medium">📞 +91-612-2371715</p>
+        <div className="hidden lg:flex items-center gap-4 text-right">
+          <div className="text-sm md:text-base text-[#811919]/70 leading-snug">
+            <p className="font-bold text-[#811919] text-lg">Ashok Rajpath, Patna</p>
+            <p className="text-[#811919]/80">Bihar — 800005, India</p>
+            <p className="text-[#811919] font-semibold mt-1">📞 +91-612-2371715</p>
           </div>
-          <div className="w-10 h-10 rounded-full bg-burnt-50 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-burnt-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <div className="w-12 h-12 rounded-full bg-[#811919]/10 flex items-center justify-center border border-[#811919]/20">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#811919]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>

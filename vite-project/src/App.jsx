@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
-import NotificationStrip from './components/NotificationStrip';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
+import FeaturesCarousel from './components/FeaturesCarousel';
 import RecentPublications from './components/RecentPublications';
 import ResearchHighlights from './components/ResearchHighlights';
 import Projects from './components/Projects';
@@ -37,10 +37,10 @@ function App() {
     <div className="min-h-screen bg-white">
       <Header />
       <Navbar />
-      <NotificationStrip />
       <main>
         <HeroSection />
         <AboutSection />
+        <FeaturesCarousel />
         <RecentPublications />
         <ResearchHighlights />
         <Projects />
