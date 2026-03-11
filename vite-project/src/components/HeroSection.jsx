@@ -5,8 +5,10 @@ const HeroSection = () => {
   const images = [
     "/images/DJI_20250925092321_0053_D (1).png",
     "/images/DJI_20250925145712_0143_D.png",
+    "/images/IMG_20251019_214850.png",
     "/images/DJI_20250925145758_0148_D.png",
     "/images/DJI_20250925150150_0153_D.png",
+    "/images/DSC_0161 (2).png",
     "/images/DJI_20250925161831_0200_D.png",
     "/images/TYNE9859(1).png",
     "/images/VIS07257.png"
@@ -49,11 +51,18 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="max-w-5xl"
+          animate={{
+            opacity: [0, 1, 1, 0], // Fades in, stays, then fades out
+            y: [30, 0, 0, -20]     // Slides up, stays, then moves up slightly on exit
+          }}
+          transition={{ 
+            duration: 8,           // Total animation duration
+            times: [0, 0.1, 0.8, 1], // Timing of each stage (0-10% in, 10-80% stay, 80-100% out)
+            delay: 0.5 
+          }}
+          className="max-w-5xl pointer-events-none" // pointer-events-none so it doesn't block interactions after fading
         >
           <h2 className="text-4xl md:text-6xl lg:text-[5.5rem] text-white font-black mb-6 leading-[1.1] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase tracking-tight">
             National Institute of <br/> Technology Patna

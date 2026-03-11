@@ -4,9 +4,9 @@ const AboutSection = () => {
       {/* Background Image & Soft Theme Overlay */}
       <div className="absolute inset-0 z-0">
         <div 
-          className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80')] bg-cover bg-center"
+          className="absolute inset-0 bg-[url('/images/DJI_20250925150150_0153_D.png')] bg-cover bg-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#800000]/40 to-[#4d0000]/40" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#800000]/60 to-[#4d0000]/80" />
       </div>
 
       <div className="w-full px-4 md:px-8 xl:px-12 relative z-10">
