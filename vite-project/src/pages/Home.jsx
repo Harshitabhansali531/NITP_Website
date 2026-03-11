@@ -4,7 +4,6 @@ import AboutSection from '../components/AboutSection';
 import FeaturesCarousel from '../components/FeaturesCarousel';
 import NoticeEvents from '../components/NoticeEvents';
 import ResearchModule from '../components/ResearchModule';
-import FacultyProfile from '../components/FacultyProfile';
 import CampusImage from '../components/CampusImage';
 
 const Home = () => {
@@ -37,7 +36,6 @@ const Home = () => {
       <FeaturesCarousel />
       <NoticeEvents />
       <ResearchModule />
-      <FacultyProfile />
       <CampusImage />
     </main>
   );

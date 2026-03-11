@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import CSEDepartment from './pages/CSEDepartment';
+import FacultyProfile from './components/FacultyProfile';
 
 function App() {
   const { pathname } = useLocation();
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/department/cse" element={<CSEDepartment />} />
+        <Route path="/faculty-directory" element={<FacultyProfile />} />
       </Routes>
       <Footer />
     </div>

@@ -16,8 +16,10 @@ import {
   MapPin,
   Phone,
   Link2,
-  FlaskConical
+  FlaskConical,
+  ArrowLeft
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const FacultyProfile = () => {
   const [data, setData] = useState(null);
@@ -78,12 +80,23 @@ const FacultyProfile = () => {
   ];
 
   return (
-    <section id="faculty-profile" className="py-24 bg-white relative overflow-hidden">
+    <section id="faculty-profile" className="pt-24 pb-24 bg-white relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-[#811919]/5 blur-[120px] rounded-full -mr-24 -mt-24 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-[#000080]/5 blur-[100px] rounded-full -ml-20 -mb-20 pointer-events-none" />
 
       <div className="max-w-[1750px] mx-auto px-4 relative z-10">
+        
+        {/* Navigation Bar */}
+        <div className="flex items-center justify-between mb-10">
+          <Link to="/" className="flex items-center gap-2 text-[#811919] font-bold hover:underline group">
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            Back to Home
+          </Link>
+          <div className="text-xs font-black uppercase tracking-[0.3em] text-gray-400">
+            Faculty Directory / Profile
+          </div>
+        </div>
         
         {/* Profile Hero Header */}
         <div className="relative bg-white rounded-[40px] shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] overflow-hidden border border-gray-100 mb-12">
