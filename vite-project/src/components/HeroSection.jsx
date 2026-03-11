@@ -1,30 +1,77 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
 const HeroSection = () => {
+  const images = [
+    "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2086&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1541339907198-e08759dfc3f0?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1525921429624-479b6a29d84c?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=2070&auto=format&fit=crop"
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/Video/NITP.mp4" type="video/mp4" />
-      </video>
+      {/* Background Image Carousel */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <img
+            src={images[currentIndex]}
+            alt={`Campus view ${currentIndex + 1}`}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* Dark Overlay for Readability */}
-      <div className="absolute inset-0 bg-black/40 z-10" />
+      {/* Dark Overlay with Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/60 z-10" />
 
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
-        <div className="max-w-5xl animate-fade-in-up">
-          <h2 className="text-4xl md:text-6xl lg:text-[5rem] text-white font-bold mb-6 leading-tight drop-shadow-2xl font-[var(--font-heading)] tracking-wide">
-            NATIONAL INSTITUTE OF TECHNOLOGY PATNA
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="max-w-5xl"
+        >
+          <h2 className="text-4xl md:text-6xl lg:text-[5.5rem] text-white font-black mb-6 leading-[1.1] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase tracking-tight">
+            National Institute of <br/> Technology Patna
           </h2>
-          <p className="text-xl md:text-3xl text-gray-200 drop-shadow-md font-light font-[var(--font-heading)] mt-4">
-            A Legacy of Excellence since 1886.
+          <div className="w-24 h-1.5 bg-[#811919] mx-auto mb-8 rounded-full shadow-[0_0_20px_rgba(129,25,25,0.5)]" />
+          <p className="text-xl md:text-3xl text-gray-100 drop-shadow-lg font-bold uppercase tracking-[0.2em] relative inline-block">
+            <span className="relative z-10">A Legacy of Excellence since 1886.</span>
           </p>
-        </div>
+        </motion.div>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`h-1.5 rounded-full transition-all duration-500 ${
+              idx === currentIndex ? 'w-12 bg-[#811919]' : 'w-4 bg-white/30 hover:bg-white/50'
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
