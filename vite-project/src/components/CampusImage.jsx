@@ -3,7 +3,7 @@ const CampusImage = () => {
     <section id="campus" className="relative">
       <div className="relative h-[50vh] min-h-[350px] overflow-hidden">
         <img
-          src="/images/campus-aerial.png"
+          src="vite-project\public\images\TYNE9859 (1).png"
           alt="NIT Patna Campus Aerial View"
           className="w-full h-full object-cover"
           loading="lazy"
