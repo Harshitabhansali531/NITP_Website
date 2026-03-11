@@ -77,7 +77,7 @@ const AboutSection = () => {
               {/* Profile Image with outline effect */}
               <div className="w-56 h-56 rounded-full overflow-hidden border-4 border-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] ring-2 ring-gray-100">
                 <img
-                  src="/images/director.png"
+                  src="/images/VIS07257.png"
                   alt="Prof. Pradip K. Jain"
                   className="w-full h-full object-cover object-[center_20%]"
                 />
