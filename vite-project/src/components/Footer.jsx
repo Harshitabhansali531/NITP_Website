@@ -5,12 +5,21 @@ import {
   MapPin, 
   Globe, 
   ChevronRight,
-  Monitor,
-  Heart
+  Facebook,
+  Twitter,
+  Linkedin,
+  Youtube
 } from 'lucide-react';
 
 const Footer = () => {
   const [visitorCount] = useState(['1', '4', '0', '0', '7', '1']);
+
+  const socialLinks = [
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Youtube, href: '#', label: 'YouTube' },
+  ];
 
   const footerLinks = [
     {
@@ -134,10 +143,15 @@ const Footer = () => {
           </p>
 
           {/* Micro Socials */}
-          <div className="flex gap-2">
-            {['FB', 'X', 'LN', 'YT'].map((s, i) => (
-              <a key={i} href="#" className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[10px] font-black hover:bg-[#811919] transition-all">
-                {s}
+          <div className="flex gap-3">
+            {socialLinks.map((social, i) => (
+              <a 
+                key={i} 
+                href={social.href} 
+                aria-label={social.label}
+                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#811919] hover:border-[#811919] transition-all transform hover:-translate-y-1 shadow-lg group"
+              >
+                <social.icon className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
               </a>
             ))}
           </div>
