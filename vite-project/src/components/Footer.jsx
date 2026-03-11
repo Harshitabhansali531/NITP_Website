@@ -1,111 +1,107 @@
-const quickLinks = [
-  {
-    title: 'Academics',
-    links: [
-      { label: 'Departments', href: '#' },
-      { label: 'Programs', href: '#' },
-      { label: 'Academic Calendar', href: '#' },
-      { label: 'Examination', href: '#' },
-      { label: 'Curriculum', href: '#' },
-    ],
-  },
-  {
-    title: 'Quick Links',
-    links: [
-      { label: 'Admissions', href: '#' },
-      { label: 'Placements', href: '#' },
-      { label: 'Research', href: '#' },
-      { label: 'Library', href: '#' },
-      { label: 'NIRF Data', href: '#' },
-    ],
-  },
-  {
-    title: 'Important',
-    links: [
-      { label: 'RTI', href: '#' },
-      { label: 'Tenders', href: '#' },
-      { label: 'Annual Reports', href: '#' },
-      { label: 'ICC', href: '#' },
-      { label: 'Anti-Ragging', href: '#' },
-    ],
-  },
-  {
-    title: 'Connect',
-    links: [
-      { label: 'Contact Us', href: '#' },
-      { label: 'How to Reach', href: '#' },
-      { label: 'Alumni Portal', href: '#' },
-      { label: 'Newsletter', href: '#' },
-      { label: 'Feedback', href: '#' },
-    ],
-  },
-];
+import React, { useState } from 'react';
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Globe, 
+  ChevronRight,
+  Monitor,
+  Heart
+} from 'lucide-react';
 
 const Footer = () => {
+  const [visitorCount] = useState(['1', '4', '0', '0', '7', '1']);
+
+  const footerLinks = [
+    {
+      title: 'Quick Links',
+      links: [
+        { label: 'Departments', href: '#' },
+        { label: 'NIRF', href: '#' },
+        { label: 'New Campus', href: '#' },
+        { label: 'RTI', href: '#' },
+        { label: 'Magazine(Vol.4)', href: '#' },
+        { label: 'Study In India', href: '#' },
+      ]
+    },
+    {
+      title: 'Explore',
+      links: [
+        { label: 'Campus', href: '#' },
+        { label: 'BOG/FC/BWC Minutes', href: '#' },
+        { label: 'Convocation 2023', href: '#' },
+        { label: 'Senate Minutes', href: '#' },
+        { label: 'SC/ST Cell', href: '#' },
+        { label: 'National Service Scheme', href: '#' },
+      ]
+    },
+    {
+      title: 'Resources',
+      links: [
+        { label: 'How to Reach', href: '#' },
+        { label: 'Annual Reports', href: '#' },
+        { label: 'Tenders', href: '#' },
+        { label: 'Academic Calendar', href: '#' },
+        { label: 'Terms of Use', href: '#' },
+        { label: 'Contact Us', href: '#' },
+      ]
+    }
+  ];
+
   return (
-    <footer id="footer" className="bg-navy-950 text-gray-300">
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 py-14">
-        <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-10">
-          {/* Logo / About */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <img src="/images/logo.png" alt="NIT Patna" className="w-12 h-12 object-contain" width={48} height={48} />
-              <div>
-                <h3 className="text-white font-bold text-lg font-[var(--font-heading)]">NIT Patna</h3>
-                <p className="text-xs text-gray-500">Est. 1886</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-400 leading-relaxed mb-5">
-              National Institute of Technology Patna is an Institute of National Importance, 
-              committed to excellence in technical education, research, and innovation.
-            </p>
-            <div className="space-y-2 text-sm">
-              <p className="flex items-start gap-2">
-                <span className="text-burnt-500 mt-0.5">📍</span>
-                Ashok Rajpath, Patna, Bihar — 800005, India
-              </p>
-              <p className="flex items-start gap-2">
-                <span className="text-burnt-500 mt-0.5">📞</span>
-                +91-612-2371715 / 2372715
-              </p>
-              <p className="flex items-start gap-2">
-                <span className="text-burnt-500 mt-0.5">✉️</span>
-                registrar@nitp.ac.in
-              </p>
+    <footer id="footer" className="relative bg-[#4d0d0d] text-white pt-16 pb-8 border-t-4 border-[#811919]">
+      {/* Background Subtle Overlay */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/micro-carbon.png')]" />
+
+      <div className="relative z-10 max-w-[1750px] mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+          
+          {/* LEFT COLUMN: MAP & ADDRESS */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl h-64 group relative">
+              <iframe
+                title="NIT Patna Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.564!2d85.170252!3d25.619183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed58556f8f172d%3A0xc3f347306236b359!2sNational%20Institute%20of%20Technology%20Patna!5e0!3m2!1sen!2sin!4v1710183000000!5m2!1sen!2sin"
+                className="w-full h-full grayscale-[0.3] contrast-[1.1] transition-transform duration-700 group-hover:scale-110"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe>
+              <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]" />
             </div>
 
-            {/* Social Links */}
-            <div className="flex gap-3 mt-5">
-              {['Facebook', 'Twitter', 'LinkedIn', 'YouTube', 'Instagram'].map((social, idx) => (
-                <a
-                  key={idx}
-                  href="#"
-                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-burnt-600 flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 text-xs font-bold"
-                  aria-label={social}
-                  title={social}
-                >
-                  {social[0]}
-                </a>
-              ))}
+            <div className="space-y-4 pt-2">
+              <div className="flex items-start gap-4">
+                <MapPin className="w-5 h-5 text-red-400 shrink-0 mt-1" />
+                <p className="text-white/90 font-medium leading-tight">
+                  Ashok Rajpath, Mahendru, Patna,<br/>Bihar 800005, India
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <Phone className="w-5 h-5 text-red-400 shrink-0" />
+                <a href="tel:06122371715" className="text-white/90 hover:text-white font-bold transition-colors">0612-2371715</a>
+              </div>
+              <div className="flex items-center gap-4">
+                <Mail className="w-5 h-5 text-red-400 shrink-0" />
+                <a href="mailto:info@nitp.ac.in" className="text-white/90 hover:text-white font-bold transition-colors">info@nitp.ac.in</a>
+              </div>
             </div>
           </div>
 
-          {/* Quick Links */}
-          {quickLinks.map((section, idx) => (
-            <div key={idx}>
-              <h4 className="text-white font-semibold text-sm mb-4 relative">
+          {/* RIGHT COLUMNS: LINKS */}
+          {footerLinks.map((section, idx) => (
+            <div key={idx} className="space-y-6">
+              <h4 className="text-sm font-black uppercase tracking-[0.2em] text-white/50 relative inline-block pb-2 border-b-2 border-[#811919]">
                 {section.title}
-                <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-burnt-500 rounded-full" />
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {section.links.map((link, lidx) => (
                   <li key={lidx}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-gray-400 hover:text-burnt-400 transition-colors duration-200 flex items-center gap-1.5"
+                    <a 
+                      href={link.href} 
+                      className="text-white/70 font-semibold hover:text-white flex items-center gap-2 group transition-all text-sm"
                     >
-                      <span className="text-[10px] text-burnt-600">›</span>
+                      <ChevronRight className="w-3.5 h-3.5 text-red-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                       {link.label}
                     </a>
                   </li>
@@ -113,22 +109,38 @@ const Footer = () => {
               </ul>
             </div>
           ))}
-        </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-gray-500 text-center md:text-left">
-            © {new Date().getFullYear()} National Institute of Technology Patna. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4 text-xs text-gray-500">
-            <a href="#" className="hover:text-burnt-400 transition-colors">Privacy Policy</a>
-            <span>|</span>
-            <a href="#" className="hover:text-burnt-400 transition-colors">Terms of Use</a>
-            <span>|</span>
-            <a href="#" className="hover:text-burnt-400 transition-colors">Sitemap</a>
+        </div>
+
+        {/* BOTTOM SECTION: COMPACT STATS & LEGAL */}
+        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
+          
+          {/* Visitor Count Mini */}
+          <div className="flex items-center gap-3 bg-black/20 px-4 py-2 rounded-xl border border-white/5">
+            <span className="text-[10px] font-black uppercase tracking-widest text-[#811919]">Visitors:</span>
+            <div className="flex gap-1">
+              {visitorCount.map((digit, i) => (
+                <span key={i} className="w-6 h-8 bg-[#811919] rounded flex items-center justify-center text-sm font-black shadow-inner">
+                  {digit}
+                </span>
+              ))}
+            </div>
           </div>
+
+          {/* Institutional Note */}
+          <p className="text-[11px] font-bold text-white/30 uppercase tracking-[0.3em] text-center">
+            © {new Date().getFullYear()} National Institute of Technology Patna
+          </p>
+
+          {/* Micro Socials */}
+          <div className="flex gap-2">
+            {['FB', 'X', 'LN', 'YT'].map((s, i) => (
+              <a key={i} href="#" className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[10px] font-black hover:bg-[#811919] transition-all">
+                {s}
+              </a>
+            ))}
+          </div>
+
         </div>
       </div>
     </footer>
