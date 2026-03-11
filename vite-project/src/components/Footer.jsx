@@ -90,18 +90,19 @@ const Footer = () => {
 
           {/* RIGHT COLUMNS: LINKS */}
           {footerLinks.map((section, idx) => (
-            <div key={idx} className="space-y-6">
-              <h4 className="text-sm font-black uppercase tracking-[0.2em] text-white/50 relative inline-block pb-2 border-b-2 border-[#811919]">
+            <div key={idx} className="space-y-8">
+              <h4 className="text-2xl font-black uppercase tracking-widest text-white relative inline-block pb-3">
                 {section.title}
+                <span className="absolute bottom-0 left-0 w-16 h-1.5 bg-[#811919] rounded-full" />
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-6 pt-4">
                 {section.links.map((link, lidx) => (
                   <li key={lidx}>
                     <a 
                       href={link.href} 
-                      className="text-white/70 font-semibold hover:text-white flex items-center gap-2 group transition-all text-sm"
+                      className="text-white font-bold hover:underline decoration-[3px] underline-offset-[12px] flex items-center gap-3 group transition-all text-lg"
                     >
-                      <ChevronRight className="w-3.5 h-3.5 text-red-500 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      <ChevronRight className="w-5 h-5 text-red-500 group-hover:translate-x-1 transition-all" />
                       {link.label}
                     </a>
                   </li>
