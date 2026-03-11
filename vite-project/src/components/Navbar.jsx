@@ -71,7 +71,7 @@ const navItems = [
     label: 'Faculty & Staff',
     href: '#',
     children: [
-      { label: 'Faculty Directory', href: '#', icon: Users },
+      { label: 'Faculty Directory', href: '#faculty-profile', icon: Users },
       { label: 'Officers Directory', href: '#', icon: Shield },
       { label: 'Staff Directory', href: '#', icon: UserCheck },
       { label: 'Admin Portal', href: '#', icon: Monitor },

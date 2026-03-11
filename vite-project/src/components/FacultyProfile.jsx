@@ -15,7 +15,8 @@ import {
   AlertCircle,
   MapPin,
   Phone,
-  Link2
+  Link2,
+  FlaskConical
 } from 'lucide-react';
 
 const FacultyProfile = () => {
@@ -77,7 +78,7 @@ const FacultyProfile = () => {
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section id="faculty-profile" className="py-24 bg-white relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-[#811919]/5 blur-[120px] rounded-full -mr-24 -mt-24 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-[#000080]/5 blur-[100px] rounded-full -ml-20 -mb-20 pointer-events-none" />

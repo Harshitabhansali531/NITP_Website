@@ -9,7 +9,7 @@ const HeroSection = () => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/Video/Screen Recording 2026-03-11 175445.mp4" type="video/mp4" />
+        <source src="/Video/NITP.mp4" type="video/mp4" />
       </video>
 
       {/* Dark Overlay for Readability */}
