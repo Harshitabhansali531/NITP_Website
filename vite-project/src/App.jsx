@@ -6,6 +6,7 @@ import AboutSection from './components/AboutSection';
 import FeaturesCarousel from './components/FeaturesCarousel';
 import NoticeEvents from './components/NoticeEvents';
 import ResearchModule from './components/ResearchModule';
+import FacultyProfile from './components/FacultyProfile';
 import CampusImage from './components/CampusImage';
 import Footer from './components/Footer';
 
@@ -42,6 +43,7 @@ function App() {
         <FeaturesCarousel />
         <NoticeEvents />
         <ResearchModule />
+        <FacultyProfile />
         <CampusImage />
       </main>
       <Footer />

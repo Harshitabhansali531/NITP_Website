@@ -90,7 +90,7 @@ const FeaturesCarousel = () => {
   };
 
   return (
-    <section className="pt-4 pb-16 bg-white relative overflow-hidden" ref={containerRef}>
+    <section className="pt-4 pb-1 bg-white relative overflow-hidden" ref={containerRef}>
 
       <div className="max-w-[1750px] mx-auto px-4 relative z-10 w-full mb-8 mt-14 flex justify-between items-end">
         <div className="max-w-5xl">

@@ -209,7 +209,7 @@ const ResearchModule = () => {
               ))}
             </div>
 
-            <a href="#" className="mt-12 flex items-center justify-center gap-2 w-full py-4 border-2 border-gray-100 text-gray-400 font-black uppercase text-xs tracking-widest hover:border-[#811919] hover:text-[#811919] transition-all rounded-xl">
+            <a href="#" className="mt-12 flex items-center justify-center gap-2 w-full py-4 border-2 border-[#811919] text-[#811919] font-black uppercase text-xs tracking-widest hover:bg-[#811919] hover:text-white transition-all rounded-xl">
               Explore Research Hub
               <ArrowRight className="w-4 h-4" />
             </a>
