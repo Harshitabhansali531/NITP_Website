@@ -18,7 +18,7 @@ const highlights = [
     title: 'Advanced Materials Research',
     description: 'Pioneering research in nanomaterials, composites, and smart materials for sustainable technologies.',
     stats: '45+ Papers | 12 Patents',
-    color: 'bg-blue-50 text-blue-600 border-blue-100',
+    color: 'bg-red-50 text-[#811919] border-red-100',
   },
   {
     icon: <Cpu className="w-6 h-6" />,
@@ -32,21 +32,21 @@ const highlights = [
     title: 'Renewable Energy Systems',
     description: 'Research on solar energy, fuel cells, and sustainable power generation for a greener future.',
     stats: '35+ Papers | 6 Patents',
-    color: 'bg-amber-50 text-amber-600 border-amber-100',
+    color: 'bg-red-50 text-[#811919] border-red-100',
   },
   {
     icon: <ShieldCheck className="w-6 h-6" />,
     title: 'IoT & Cyber Security',
     description: 'Building secure IoT ecosystems, blockchain applications, and robust cybersecurity frameworks.',
     stats: '50+ Papers | 15 Projects',
-    color: 'bg-indigo-50 text-indigo-600 border-indigo-100',
+    color: 'bg-red-50 text-[#811919] border-red-100',
   },
   {
     icon: <Network className="w-6 h-6" />,
     title: '6G Communication',
     description: 'Next-generation wireless networks and ultra-reliable low latency communication protocols.',
     stats: '40+ Papers | 5 Projects',
-    color: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+    color: 'bg-red-50 text-[#811919] border-red-100',
   },
 ];
 
